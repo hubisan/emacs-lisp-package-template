@@ -37,6 +37,7 @@ jobs:
 
     - name: Test the project
       run: |
+        eldev clean all
         eldev -p -dtT test
         eldev -dtT lint
         eldev -dtT compile --warnings-as-errors
