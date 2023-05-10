@@ -2,106 +2,41 @@ name: CI
 
 on:
   push:
-    # branches:
-    #   - main
-    #   - master
-    #   - develop
     paths-ignore:
-      - '**.org'
       - '**.md'
-      - 'docs/**'
+      - '**.org'
   pull_request:
-    # branches:
-    #   - main
-    #   - master
-    #   - develop
     paths-ignore:
-      - '**.org'
       - '**.md'
-      - 'docs/**'
+      - '**.org'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    # Allow snapshot to produce errors.
     continue-on-error: ${{ matrix.emacs_version == 'snapshot' }}
     strategy:
-      # Test all Emacs versions even if one fails.
       fail-fast: false
       matrix:
         emacs_version:
-          - '28.1'
-          - '28.2'
-          - 'snapshot'
+          # Add more lines like this if you want to test on different Emacs versions.
+          - 28.1
+          - 28.2
+          - snapshot
 
     steps:
-      - name: Set up Emacs
-        uses: purcell/setup-emacs@master
-        with:
-          version: ${{matrix.emacs_version}}
+    - name: Set up Emacs
+      uses: purcell/setup-emacs@master
+      with:
+        version: ${{matrix.emacs_version}}
 
-      - name: Install Eldev
-        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
+    - name: Install Eldev
+      run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
 
-      - name: Check out the source code
-        uses: actions/checkout@v3
+    - name: Check out the source code
+      uses: actions/checkout@v3
 
-      - name: Run tests
-        run: make test verbose=--trace
-
-      - name: Clean
-        run: make clean
-
-  lint:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        emacs_version:
-          - '28.2'
-
-    steps:
-      - name: Set up Emacs
-        uses: purcell/setup-emacs@master
-        with:
-          version: ${{matrix.emacs_version}}
-
-      - name: Install Eldev
-        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
-
-      - name: Check out the source code
-        uses: actions/checkout@v3
-
-      - name: Run lint
-        run: make lint verbose=--trace
-
-      - name: Clean
-        run: make clean
-
-  compile:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        emacs_version:
-          - '28.2'
-
-    steps:
-      - name: Set up Emacs
-        uses: purcell/setup-emacs@master
-        with:
-          version: ${{matrix.emacs_version}}
-
-      - name: Install Eldev
-        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
-
-      - name: Check out the source code
-        uses: actions/checkout@v3
-
-      - name: Compile files
-        run: make compile verbose=--trace
-
-      - name: Clean
-        run: make clean
+    - name: Test the project
+      run: |
+        eldev -p -dtT test
+        eldev -dtT lint
+        eldev -dtT compile --warnings-as-errors
