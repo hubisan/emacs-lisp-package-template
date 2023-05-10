@@ -1,0 +1,97 @@
+---
+name: CI
+
+on:
+  push:
+    # branches:
+    #   - master
+    #   - develop
+    paths-ignore:
+      - "**.org"
+      - "**.md"
+      - "docs/**"
+  pull_request:
+    branches:
+      - master
+      - develop
+    paths-ignore:
+      - "**.org"
+      - "**.md"
+      - "docs/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Allow snapshot to produce errors.
+    continue-on-error: ${{ matrix.emacs_version == "snapshot" }}
+    strategy:
+      # Test all Emacs versions even if one fails.
+      fail-fast: false
+      matrix:
+        emacs_version:
+          - "28.1"
+          - "28.2"
+          - "snapshot"
+
+    steps:
+      - name: Set up Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: ${{matrix.emacs_version}}
+
+      - name: Install Eldev
+        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
+
+      - name: Check out the source code
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: make test verbose=--trace
+
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        emacs_version:
+          - "28.2"
+
+    steps:
+      - name: Set up Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: ${{matrix.emacs_version}}
+
+      - name: Install Eldev
+        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
+
+      - name: Check out the source code
+        uses: actions/checkout@v3
+
+      - name: Run lint
+        run: make lint verbose=--trace
+
+  compile:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        emacs_version:
+          - "28.2"
+
+    steps:
+      - name: Set up Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: ${{matrix.emacs_version}}
+
+      - name: Install Eldev
+        run: curl -fsSL https://raw.github.com/doublep/eldev/master/webinstall/github-eldev | sh
+
+      - name: Check out the source code
+        uses: actions/checkout@v3
+
+      - name: Compile files
+        run: make compile verbose=--trace
