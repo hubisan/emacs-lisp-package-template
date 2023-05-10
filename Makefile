@@ -20,7 +20,7 @@ all: test compile lint
 
 test:
 	@printf '\n\e[1;34m%-10s\e[0m\n\n' '>> TEST'
-	@eldev --packaged --debug $(verbose) --time test
+	@eldev --as-is --debug $(verbose) --time test
 
 lint:
 	@printf '\n\e[1;34m%-10s\e[0m\n\n' '>> LINT'
