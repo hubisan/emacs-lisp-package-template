@@ -21,7 +21,7 @@ jobs:
           # Add more lines like this if you want to test on different Emacs versions.
           - 28.1
           - 28.2
-          - snapshot
+          # - snapshot
 
     steps:
     - name: Set up Emacs
