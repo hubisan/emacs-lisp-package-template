@@ -35,9 +35,14 @@ jobs:
     - name: Check out the source code
       uses: actions/checkout@v3
 
-    - name: Test the project
-      run: |
-        eldev clean all
-        eldev -p -dtT test
-        eldev -dtT lint
-        eldev -dtT compile --warnings-as-errors
+    - name: Clean
+      run: eldev clean all
+
+    - name: Test
+      run: make test verbose=--trace
+
+    - name: Lint
+      run: make lint verbose=--trace
+
+    - name: Compile
+      run: make compile verbose=--trace
