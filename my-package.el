@@ -6,7 +6,7 @@
 ;; Maintainer: name <email-adress>
 ;; URL: https://github.com/
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "28.2"))
+;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: {{use `finder-by-keyword' to find a matching keyword}}
 
 ;; This file is not part of GNU Emacs
