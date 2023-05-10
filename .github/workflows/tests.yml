@@ -25,7 +25,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     # Allow snapshot to produce errors.
-    continue-on-error: ${{ matrix.emacs_version == "snapshot" }}
+    continue-on-error: ${{ matrix.emacs_version == 'snapshot' }}
     strategy:
       # Test all Emacs versions even if one fails.
       fail-fast: false
