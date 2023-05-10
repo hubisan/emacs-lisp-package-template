@@ -47,8 +47,11 @@ jobs:
       - name: Check out the source code
         uses: actions/checkout@v3
 
+      - name: Clean
+        run: make clean
+
       - name: Run tests
-        run: make test
+        run: make test verbose=--trace
 
   lint:
     runs-on: ubuntu-latest
