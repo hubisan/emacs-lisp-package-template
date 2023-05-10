@@ -4,6 +4,7 @@ name: CI
 on:
   push:
     # branches:
+    #   - main
     #   - master
     #   - develop
     paths-ignore:
@@ -11,9 +12,10 @@ on:
       - "**.md"
       - "docs/**"
   pull_request:
-    branches:
-      - master
-      - develop
+    # branches:
+    #   - main
+    #   - master
+    #   - develop
     paths-ignore:
       - "**.org"
       - "**.md"
