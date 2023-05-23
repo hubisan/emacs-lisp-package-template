@@ -7,21 +7,17 @@ When this template is used for a new package the following changes are needed:
 - [ ] Add your package file(s). You can use the file [[file:my-package.el][my-package.el]] as a template.
 - [ ] Remove the file [[file:my-package.el][my-package.el]].
 - [ ] Change the main file in the [[file:Eldev::3][Eldev]]. 
-- [ ] Add you tests in [[file:tests/][./tests]]. You can use =test-my-package.el= as a template
-  which requires =test-helper.el=. This is an example of a file with auxiliary
-  functions that can be used in other test files.
-- [ ] Change the Emacs version that should be tested in [[file:.github/workflows/tests.yml][tests.yml]]. For linting
-  and compiling the latest stable Emacs version is enough. Tests on the other
-  hand should be done with the Emacs versions you want to support.
+- [ ] Add your tests in [[file:tests/][./tests]]. You can use =test-my-package.el= as a template which requires =test-helper.el=. This is an example of a file with auxiliary functions that can be used in other test files.
+- [ ] Change the Emacs version that should be tested in [[file:.github/workflows/tests.yml][tests.yml]]. For linting and compiling the latest stable Emacs version is enough. Tests on the other hand should be done with the Emacs versions you want to support.
 - [ ] Remove this section.
+- [ ] Change the url of the [[file:README.org::39][badge]] to your repositiory.   
+
   
 ** Tips for Documentation
 
 *** Foldable Section
 
-The following construct can be used to make parts of this file foldable
-when rendered on github. This can be used to for instance describe multiple
-installation tools.
+The following construct can be used to make parts of this file foldable when rendered on github. This can be used to for instance describe multiple installation tools.
 
 @@html:<details>@@
 @@html:<summary>@@
@@ -120,8 +116,6 @@ See the [[./CHANGELOG.org][changelog]].
 :CUSTOM_ID: contributing
 :END:
 
-Use the issue tracker to reports bugs, suggest improvements or propose new
-features. If you want to contribute please open a pull request after having
-opened a new issue.
+Use the issue tracker to reports bugs, suggest improvements or propose new features. If you want to contribute please open a pull request after having opened a new issue.
 
 In any case please check out the [[./CONTRIBUTING.org::*Contributing][contributing guidelines]] beforehand.

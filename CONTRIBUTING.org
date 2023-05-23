@@ -29,8 +29,7 @@ Remember to:
 :CUSTOM_ID: testing
 :END:
 
-Uses [[https://github.com/doublep/eldev][Eldev]] which needs to be [[https://github.com/doublep/eldev#installation][installed]]. The tests are written with [[https://github.com/jorgenschaefer/emacs-buttercup][Buttercup]].
-After pushing GitHub an action is triggered to automatically lint and run tests.
+Uses [[https://github.com/doublep/eldev][Eldev]] which needs to be [[https://github.com/doublep/eldev#installation][installed]]. The tests are written with [[https://github.com/jorgenschaefer/emacs-buttercup][Buttercup]]. After pushing GitHub an action is triggered to automatically lint and runtests.
 
 **** Testing locally
 
@@ -46,8 +45,7 @@ To test the package locally call the Makefile targets:
 | make clean        | Clean everything                                      |
 | make run-emacs    | Launch Emacs with package and dependencies installed  |
 
-The output of Eldev is set to ~--quiet~. To produce more verbose output, run the
-make targets by setting the verbose parameter:
+The output of Eldev is set to ~--quiet~. To produce more verbose output, run the make targets by setting the verbose parameter:
 
 #+BEGIN_SRC shell
 make all verbose=--trace # very verbose
@@ -55,8 +53,7 @@ make all verbose=--verbose # verbose
 #+END_SRC
 
 
-It is also possible to run the test with another Emacs version like so (Docker
-needs to be installed):
+It is also possible to run the test with another Emacs version like so (Docker needs to be installed):
 
 #+BEGIN_SRC shell
   # Run the test with Emacs version 25.3
