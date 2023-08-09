@@ -16,6 +16,7 @@ help:
 	$(info - make clean      # Clean everything)
 	$(info - make run-emacs  # Run Emacs with package and dependencies installed)
 	$(info )
+	@echo > /dev/null
 
 all: test compile lint
 
